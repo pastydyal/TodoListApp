@@ -1,0 +1,48 @@
+﻿@model TodoListApp.Models.TaskItem
+
+@{
+    ViewData["Title"] = "Удаление задачи";
+}
+
+<div class="container mt-4">
+    <div class="card mx-auto border-danger" style="max-width: 600px;">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Удаление задачи</h2>
+        </div>
+
+        <div class="card-body">
+            <p class="lead">
+                Ты действительно хочешь удалить эту задачу?
+            </p>
+
+            <dl class="row">
+                <dt class="col-sm-4">Название</dt>
+                <dd class="col-sm-8">@Model.Title</dd>
+
+                <dt class="col-sm-4">Описание</dt>
+                <dd class="col-sm-8">@Model.Description</dd>
+
+                <dt class="col-sm-4">Статус</dt>
+                <dd class="col-sm-8">
+                    @(Model.IsCompleted ? "Выполнена" : "Не выполнена")
+                </dd>
+
+                <dt class="col-sm-4">Дата создания</dt>
+                <dd class="col-sm-8">
+                    @Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                </dd>
+            </dl>
+
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                <button type="submit" class="btn btn-danger">
+                    Да, удалить
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    Отмена
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
